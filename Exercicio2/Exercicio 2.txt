@@ -1,0 +1,41 @@
+Exercicio 2
+
+Padrão Strategy:
+O padrão Strategy define uma família de algoritmos, encapsula cada um deles e os torna intercambiáveis. Ele permite que o algoritmo varie independentemente dos clientes que o utilizam. No cenário apresentado, cada tipo de imposto (Ip1, Ip2, Ip3) representa uma estratégia diferente para calcular a taxa sobre um orçamento.
+
+Componentes da solução usando o padrão Strategy:
+Interface Imposto (Estratégia):
+
+Representa a operação de cálculo de imposto que todas as estratégias concretas devem implementar.
+Proporciona flexibilidade para adicionar novas estratégias (novos tipos de impostos) no futuro sem alterar o código existente.
+Estratégias Concretas (Ip1, Ip2, Ip3):
+
+Estas são implementações específicas da interface Imposto. Cada uma delas representa uma forma diferente de calcular o imposto sobre o orçamento com base em uma taxa específica.
+Ao encapsular os algoritmos de cálculo de impostos em classes separadas (estratégias), eliminamos a necessidade de cadeias de if/else ou switch/case. Isso também facilita a manutenção e expansão do código.
+Classe de Contexto (Orçamento):
+
+Esta classe representa o contexto no qual a estratégia será aplicada.
+Contém informações relevantes, como uma lista de valores de serviços/produtos.
+É independente da estratégia específica, o que significa que podemos calcular o imposto usando qualquer estratégia sem alterar a classe Orcamento.
+Fluxo Teórico:
+Inicialização:
+
+Um Orcamento é criado contendo uma lista de valores dos serviços/produtos.
+Uma estratégia de imposto é selecionada com base no tipo de imposto desejado.
+Cálculo:
+
+Para calcular o imposto, a estratégia de imposto correspondente é aplicada ao Orcamento.
+A estratégia então retorna o valor do imposto com base na taxa específica e no valor total do Orcamento.
+Extensibilidade:
+
+Se, no futuro, surgirem novos tipos de impostos, basta criar novas classes (estratégias) para eles, sem a necessidade de modificar o código existente.
+Benefícios Teóricos:
+Separar preocupações: O cálculo real do imposto é separado do orçamento. Isso torna o código mais modular e fácil de entender.
+
+Reusabilidade: A lógica de cálculo do imposto é encapsulada em estratégias, permitindo que essas estratégias sejam reutilizadas em diferentes partes da aplicação ou até mesmo em outros projetos.
+
+Flexibilidade: O padrão Strategy permite que alteremos facilmente o algoritmo de cálculo ou adicionemos novos tipos de cálculo sem afetar o código existente.
+
+Manutenção: Ao evitar cadeias de if/else ou switch/case para determinar o método de cálculo, o código fica mais limpo e fácil de manter. Adicionar ou modificar um tipo de imposto não requer alterações nas outras partes do sistema.
+
+Em resumo, a solução proposta com o padrão Strategy fornece uma estrutura organizada e flexível para lidar com diferentes métodos de cálculo de impostos, tornando o código mais extensível e fácil de manter.

@@ -1,0 +1,32 @@
+Exercicio 3 
+
+O padrão Strategy é um padrão de design comportamental que define uma família de algoritmos, encapsula cada um deles e torna-os intercambiáveis. O padrão Strategy permite que o algoritmo varie independentemente dos clientes que o utilizam.
+Em outras palavras, se tivermos vários modos de fazer algo (neste caso, ordenar um array), em vez de implementar todos os modos em uma única classe utilizando condicionais, podemos separá-los em diferentes classes (estratégias) e fazer com que uma classe de contexto interaja com essas estratégias.
+
+A Solução:
+1.	Interface OrdenacaoStrategy: Esta é a base para todas as estratégias de ordenação. Qualquer algoritmo de ordenação que queremos implementar deve seguir esta interface. A interface apenas define um contrato, o método ordenar, que todos os algoritmos de ordenação devem implementar.
+
+2.	Estratégias Concretas:
+a. InsertionSort: Implementa a interface OrdenacaoStrategy e fornece uma implementação concreta do algoritmo Insertion Sort.
+b. SelectionSort: Implementa a mesma interface e fornece uma implementação concreta do algoritmo Selection Sort.
+c. BubbleSort: Similarmente, fornece a implementação para o Bubble Sort.
+Essas estratégias concretas são independentes entre si e podem ser usadas de forma intercambiável.
+
+3.	Classe de Contexto (ContextoOrdenacao):
+Esta classe usa uma estratégia de ordenação. Ela tem um atributo para manter uma referência à estratégia de ordenação que está usando no momento.
+•	Através do construtor, você pode definir qual estratégia deseja usar.
+•	O método executarOrdenacao usa a estratégia atualmente definida para ordenar o array.
+•	A classe também oferece um método setStrategy para alterar a estratégia em tempo de execução, o que é a essência do padrão Strategy. Por exemplo, você pode começar com Bubble Sort e depois mudar para Insertion Sort, se necessário.
+
+Como Funciona:
+1.	Você cria uma instância da classe de contexto ContextoOrdenacao.
+2.	Você define qual estratégia de ordenação deseja usar (por exemplo, BubbleSort).
+3.	Você usa a classe de contexto para ordenar o array. A classe de contexto, por sua vez, delega a tarefa de ordenação para a estratégia selecionada.
+4.	Se você quiser mudar o algoritmo de ordenação, simplesmente mude a estratégia usando setStrategy.
+
+Benefícios:
+1.	Separação de Responsabilidades: Cada algoritmo de ordenação está em sua própria classe, tornando o código mais organizado e fácil de manter.
+2.	Flexibilidade: Você pode adicionar mais estratégias de ordenação no futuro sem alterar a classe de contexto ou as estratégias existentes.
+3.	Evita Condicionais: Ao usar o padrão Strategy, você evita longas cadeias de if/else ou switch/case para determinar o método de ordenação.
+
+Em resumo, a solução permite que você escolha entre diferentes algoritmos de ordenação de forma dinâmica e flexível, mantendo cada algoritmo encapsulado em sua própria classe e evitando condicionais complexas.

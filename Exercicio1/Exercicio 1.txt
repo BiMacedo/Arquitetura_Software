@@ -1,0 +1,29 @@
+Exercicio 1
+
+A solução apresentada refere-se à implementação do padrão Singleton usando uma abordagem chamada "Double Checked Locking" (bloqueio verificado duas vezes) para garantir que apenas uma instância da classe Singleton seja criada, mesmo em ambientes multi-thread.
+Vamos entender cada parte da solução:
+
+Classe Singleton:
+1. Atributo de Instância:
+private String message;: Um atributo de mensagem que pode ser utilizado para fins demonstrativos ou testes.
+
+2. Atributo Singleton:
+private static volatile Singleton instance;: Esta é a única instância da classe Singleton. O modificador volatile garante que a leitura e gravação dessa variável sejam feitas diretamente na memória principal, evitando a utilização de caches locais de threads, que poderiam causar inconsistências.
+
+3. Construtor Privado:
+private Singleton() { ... }: O construtor é privado para evitar que outras classes instanciem esta classe diretamente. Além disso, ele verifica se a instância já existe e, se existir, lança uma exceção para evitar que a reflexão seja usada para criar outra instância.
+
+4. Método getInstance:
+public static Singleton getInstance() { ... }: Este é o método principal do padrão Singleton. Ele garante que apenas uma instância da classe seja criada.
+A primeira verificação if (instance == null) verifica se a instância já existe. Se não existir, entra no bloco sincronizado.
+synchronized (Singleton.class) { ... }: Este bloco sincronizado garante que apenas uma thread por vez possa entrar neste bloco.
+A segunda verificação if (instance == null) dentro do bloco sincronizado é a "double check". Ela garante que, mesmo que duas threads passem pela primeira verificação quase simultaneamente, apenas uma delas possa criar a instância.
+
+5. Métodos Auxiliares:
+getMessage() e setMessage(String message): Métodos getters e setters para o atributo message.
+
+6. Método main:
+Usado apenas para testar a implementação do Singleton. Obtém a única instância da classe Singleton e imprime a mensagem padrão.
+
+Resumo:
+O código apresenta a implementação do padrão Singleton que é seguro em ambientes multi-thread. Ele utiliza a técnica de "Double Checked Locking" para garantir a criação de apenas uma instância da classe Singleton, mesmo quando múltiplas threads tentam obter a instância ao mesmo tempo.

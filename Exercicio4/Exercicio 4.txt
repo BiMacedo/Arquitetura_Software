@@ -1,0 +1,40 @@
+Exercicio 4
+
+Padrão Composite:
+O padrão Composite é usado para tratar objetos individuais (folhas) e composições de objetos (compostos) de maneira uniforme. Em outras palavras, o padrão permite que os clientes tratem objetos individuais e composições de maneira uniforme.
+
+Componentes da Solução:
+1.	Componente (Interface Produto):
+•	É a abstração principal que define uma interface para todos os objetos concretos (tanto folhas quanto compostos).
+•	Neste cenário, a interface Produto é o componente que declara uma operação getPreco() para obter o preço do produto.
+
+2.	Folha (Classe Promocao):
+•	Representa os objetos "folha" que não têm filhos.
+•	Realiza a operação definida na interface do Componente. Aqui, a classe Promocao é uma folha, representando um tipo específico de produto com um desconto.
+
+3.	Composite (Classe CarrinhoDeCompras):
+•	Pode conter folhas ou outros compostos.
+•	Todas as operações na interface do Componente devem ser implementadas nesta classe.
+•	Geralmente possui métodos para adicionar ou remover componentes.
+•	Neste cenário, o CarrinhoDeCompras seria uma classe composta que pode conter vários produtos (incluindo promoções).
+
+4.	Classe Contexto (Pedido):
+•	É a classe que interage com o sistema composto.
+•	Utiliza o componente principal (interface Produto) para interagir com os objetos, seja uma folha individual ou um composto.
+•	Aqui, a classe Pedido atua como o contexto, armazenando informações sobre o pedido e interagindo com o carrinho de compras (Composite) para calcular o preço total da compra.
+Fluxo:
+1.	Criar Produtos:
+•	Podemos criar produtos individuais usando a classe Promocao, onde definimos o nome, preço e desconto.
+
+2.	Adicionar ao Carrinho:
+•	O carrinho de compras permite adicionar vários produtos. Cada produto adicionado pode ser um produto individual (como uma promoção) ou pode ser outro carrinho de compras (já que estamos usando o padrão Composite).
+
+3.	Realizar Pedido:
+•	Uma vez que todos os produtos desejados estão no carrinho, podemos criar um pedido, passando todas as informações necessárias, incluindo o carrinho de compras.
+•	Para calcular o total da compra, o pedido simplesmente chama getPreco() no carrinho. O carrinho, por sua vez, chama getPreco() em todos os produtos que contém, sejam eles produtos individuais (Promocao) ou outros carrinhos.
+Benefícios:
+•	Simplicidade: Tratar objetos individuais (como uma promoção) e composições (como um carrinho de compras) uniformemente simplifica o código do cliente.
+•	Flexibilidade: Podemos facilmente adicionar novos tipos de produtos ou alterar a estrutura de produtos sem afetar o código existente.
+•	Reusabilidade: Como a estrutura é modular, é fácil reutilizar componentes em diferentes partes da aplicação.
+
+Em resumo, a solução proposta utiliza o padrão Composite para modelar um sistema de carrinho de compras onde os produtos podem ser tratados individualmente ou em grupos, permitindo cálculos flexíveis e uniformes para o total da compra.
